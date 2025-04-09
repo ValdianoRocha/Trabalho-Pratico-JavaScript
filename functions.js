@@ -31,8 +31,9 @@ export async function adicionarNovaTarefa() {
     // let id = object['animais'].length+1
     let novaTarefa = {
         "id": ultimoId,
-        "titulo": prompt("nome: "),
-        "descricao": prompt("tipo: "),
+        "nome": prompt("nome: "),
+        "titulo": prompt("titulo: "),
+        "descricao": prompt("descricao: "),
         "concluida": false
     }
 
