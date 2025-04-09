@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/ValdianoRocha/Trabalho-Pratico-JavaScript/issues"
   },
-  "homepage": "https://github.com/ValdianoRocha/Trabalho-Pratico-JavaScript#readme"
+  "homepage": "https://github.com/ValdianoRocha/Trabalho-Pratico-JavaScript#readme",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
 }
