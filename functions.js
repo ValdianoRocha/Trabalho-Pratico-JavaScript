@@ -2,6 +2,7 @@ import fs from "fs/promises"
 const caminho = './tarefas.json'
 import PromptSync from "prompt-sync"
 const prompt = PromptSync()
+const dados = await lerConverterTarefa()
 
 
 export async function lerConverterTarefa() {
@@ -25,9 +26,7 @@ export async function escreverTarefa(dados) {
 } //reescreve o  arquivo e organiza 
 
 export async function adicionarNovaTarefa() {
-    // let dadosInformados = await adicionar()
-    const tarefa = await lerConverterTarefa()
-    const ultimoId = tarefa.length > 0 ? tarefa[tarefa.length - 1].id + 1 : 1; //pegar o ultimo id 
+    const ultimoId = dados.length > 0 ? dados[dados.length - 1].id + 1 : 1; //pegar o ultimo id 
     // let id = object['animais'].length+1
     let novaTarefa = {
         "id": ultimoId,
@@ -42,6 +41,11 @@ export async function adicionarNovaTarefa() {
 
 } //adicionar um novo arquivo no final da lista de objeto usando a função escreverArquivo
 
-
-// console.log(await lerConverterTarefa());
-
+export async function filtrarTarefasComcluidas() {
+    let filtado = dados.filter(tarefa => tarefa["concluida"] == true)
+    return filtado
+}
+export async function filtrarTarefasPendentes() {
+    let filtado = dados.filter(tarefa => tarefa["concluida"] == false)
+    return filtado
+}
