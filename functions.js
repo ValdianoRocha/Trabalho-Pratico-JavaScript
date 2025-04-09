@@ -14,7 +14,7 @@ export async function lerConverterTarefa() {
         console.error(`Erro ao ler o arquivo: ${erro.messege}`);
         return ["erro"]
     }
-} // ler o arquivi e converte em object
+}
 
 export async function escreverTarefa(dados) {
     try { //serve para tratar erro
@@ -24,12 +24,11 @@ export async function escreverTarefa(dados) {
     } catch (erro) {
         console.error("Erro ao escrever no arquivo: ", erro);
     }
-} //reescreve o  arquivo e organiza 
+}
 
 export async function adicionarNovaTarefa() {
     const dados = await lerConverterTarefa()
     const ultimoId = dados.length > 0 ? dados.length + 1 : 1; //pegar o ultimo id 
-    // let id = object['animais'].length+1
     let novaTarefa = {
         "id": ultimoId,
         "nome": prompt("nome: "),
@@ -38,17 +37,16 @@ export async function adicionarNovaTarefa() {
         "concluida": false
     }
 
-    dados.splice(ultimoId,0,novaTarefa)
+    dados.splice(ultimoId, 0, novaTarefa)
     await escreverTarefa(dados)
-
 }
- //adicionar um novo arquivo no final da lista de objeto usando a função escreverArquivo
 
 export async function filtrarTarefasConcluidas() {
     const dados = await lerConverterTarefa()
     let concluido = dados.filter(tarefa => tarefa["concluida"] == true)
     return concluido
 }
+
 export async function filtrarTarefasPendentes() {
     const dados = await lerConverterTarefa()
     let pendente = dados.filter(tarefa => tarefa["concluida"] == false)
@@ -65,5 +63,4 @@ export async function concluirTarefa() {
     }
     console.log(tarefaEncontrada);
     await escreverTarefa(dados);
-
-} //modificar habitat
+}
