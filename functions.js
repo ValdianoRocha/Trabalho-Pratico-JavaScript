@@ -31,7 +31,6 @@ export async function adicionarNovaTarefa() {
     const ultimoId = dados.length > 0 ? dados.length + 1 : 1; //pegar o ultimo id 
     let novaTarefa = {
         "id": ultimoId,
-        "nome": prompt("nome: "),
         "titulo": prompt("titulo: "),
         "descricao": prompt("descricao: "),
         "concluida": false

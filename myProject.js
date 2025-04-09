@@ -20,28 +20,29 @@ do {
     switch (controlador) {
         case 1:
             await adicionarNovaTarefa()
-
             break;
         case 2:
+            console.clear()
             console.log(await lerConverterTarefa());
-
             break;
         case 3:
+            console.clear()
             console.log(await filtrarTarefasConcluidas());
-
             break;
         case 4:
+            console.clear()
             console.log(await filtrarTarefasPendentes());
-
             break;
         case 5:
+            console.clear()
             await concluirTarefa()
             break;
         case 6:
             console.log("Finalizando a execução do programa...")
             break;
         default:
-            console.log(`A opção digitada pelo usario (${controlador}), não existe!`);
+            console.clear()
+            console.log(`A opção digitada pelo usuario (${controlador}), não existe!`);
             break;
     }
 } while (controlador !== 6);
