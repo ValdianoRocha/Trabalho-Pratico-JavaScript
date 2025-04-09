@@ -37,7 +37,7 @@ export async function adicionarNovaTarefa() {
         "concluida": false
     }
 
-    dados.splice(ultimoId, 0, novaTarefa)
+    dados.push(novaTarefa)
     await escreverTarefa(dados)
 }
 
