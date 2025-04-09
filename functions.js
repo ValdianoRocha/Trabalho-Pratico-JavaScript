@@ -49,3 +49,15 @@ export async function filtrarTarefasPendentes() {
     let filtado = dados.filter(tarefa => tarefa["concluida"] == false)
     return filtado
 }
+
+export async function comcluirTarefa() {
+    console.log(await filtrarTarefasPendentes());
+    const id = +prompt("qual id você quer comcluir: ")
+    let tarefaEncontrada = dados.find((tarefa) => (id == tarefa.id))
+    if (tarefaEncontrada) {
+        tarefaEncontrada['concluida'] = true
+    }
+    console.log(tarefaEncontrada);
+    await escreverTarefa(dados);
+
+} //modificar habitat
