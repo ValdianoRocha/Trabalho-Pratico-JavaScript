@@ -2,7 +2,8 @@ import fs from "fs/promises"
 const caminho = './tarefas.json'
 import PromptSync from "prompt-sync"
 const prompt = PromptSync()
-const dados = await lerConverterTarefa()
+// const dados = await lerConverterTarefa()
+let tarefa
 
 
 export async function lerConverterTarefa() {
@@ -26,7 +27,8 @@ export async function escreverTarefa(dados) {
 } //reescreve o  arquivo e organiza 
 
 export async function adicionarNovaTarefa() {
-    const ultimoId = dados.length > 0 ? dados[dados.length - 1].id + 1 : 1; //pegar o ultimo id 
+    const dados = await lerConverterTarefa()
+    const ultimoId = dados.length > 0 ? dados.length + 1 : 1; //pegar o ultimo id 
     // let id = object['animais'].length+1
     let novaTarefa = {
         "id": ultimoId,
@@ -36,21 +38,25 @@ export async function adicionarNovaTarefa() {
         "concluida": false
     }
 
-    tarefa.push(novaTarefa)
-    await escreverTarefa(tarefa)
+    dados.splice(ultimoId,0,novaTarefa)
+    await escreverTarefa(dados)
 
-} //adicionar um novo arquivo no final da lista de objeto usando a função escreverArquivo
+}
+ //adicionar um novo arquivo no final da lista de objeto usando a função escreverArquivo
 
-export async function filtrarTarefasComcluidas() {
-    let filtado = dados.filter(tarefa => tarefa["concluida"] == true)
-    return filtado
+export async function filtrarTarefasConcluidas() {
+    const dados = await lerConverterTarefa()
+    let concluido = dados.filter(tarefa => tarefa["concluida"] == true)
+    return concluido
 }
 export async function filtrarTarefasPendentes() {
-    let filtado = dados.filter(tarefa => tarefa["concluida"] == false)
-    return filtado
+    const dados = await lerConverterTarefa()
+    let pendente = dados.filter(tarefa => tarefa["concluida"] == false)
+    return pendente
 }
 
-export async function comcluirTarefa() {
+export async function concluirTarefa() {
+    const dados = await lerConverterTarefa()
     console.log(await filtrarTarefasPendentes());
     const id = +prompt("qual id você quer comcluir: ")
     let tarefaEncontrada = dados.find((tarefa) => (id == tarefa.id))
