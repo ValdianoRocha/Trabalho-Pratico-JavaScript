@@ -1,11 +1,7 @@
 import PromptSync from "prompt-sync";
-import { lerConverterTarefa } from "./functions.js";
-import { adicionarNovaTarefa } from "./functions.js";
-import { filtrarTarefasConcluidas } from "./functions.js";
-import { filtrarTarefasPendentes } from "./functions.js";
-import { concluirTarefa } from "./functions.js";
-let controlador
 const prompt = PromptSync()
+import * as funcao from './functions.js';
+let controlador;
 
 do {
     console.log(`
@@ -19,23 +15,23 @@ do {
     controlador = +prompt(": ")
     switch (controlador) {
         case 1:
-            await adicionarNovaTarefa()
+            await funcao.adicionarNovaTarefa()
             break;
         case 2:
             console.clear()
-            console.log(await lerConverterTarefa());
+            console.log(await funcao.lerConverterTarefa());
             break;
         case 3:
             console.clear()
-            console.log(await filtrarTarefasConcluidas());
+            console.log(await funcao.filtrarTarefasConcluidas());
             break;
         case 4:
             console.clear()
-            console.log(await filtrarTarefasPendentes());
+            console.log(await funcao.filtrarTarefasPendentes());
             break;
         case 5:
             console.clear()
-            await concluirTarefa()
+            await funcao.concluirTarefa()
             break;
         case 6:
             console.log("Finalizando a execução do programa...")
